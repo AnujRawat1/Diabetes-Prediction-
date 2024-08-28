@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 50%;
+      padding: 20px;
+      text-align: center;
+    }
+    .container h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #007BFF;
+    }
+    .btn {
+      background-color: #DC3545;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 100%;
+    }
+    .btn:hover {
+      background-color: #c82333;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    .image-section {
+      margin-bottom: 20px;
+    }
+    .image-section img {
+      width: 100%;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <br><br><br><br><br><br><br><br>
+  <h1>Know Your Chances Of Getting Diabetes!</h1>
+  
+  <div class="image-section">
+    <img src="{{ url_for('static', filename='diabetes.jpg') }}" alt="Diabetes Test">
+    <style>
+      /* Other styles remain the same */
+    
+      .image-section {
+        margin-bottom: 20px;
+      }
+      .image-section img {
+        width: 30%; 
+        border-radius: 8px;
+      }
+    </style>
+    
+  </div>
+  
+  <form action="{{ url_for('predict_datapoint')}}" method="post">
+    <div class="form-group">
+      <input type="text" name="Pregnancies" placeholder="No. of Pregnancies" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="Glucose" placeholder="Glucose Level" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="BloodPressure" placeholder="Current Blood Pressure" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="SkinThickness" placeholder="Skin Thickness" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="Insulin" placeholder="Insulin Level" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="BMI" placeholder="Body Mass Index" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required">
+    </div>
+    <div class="form-group">
+      <input type="text" name="Age" placeholder="Age" required="required">
+    </div>
+    
+    <button type="submit" class="btn">Predict</button>
+  </form>
+
+  <div class="result">
+    Person is: {{result}}
+  </div>
+</div>
+
+</body>
+</html>
